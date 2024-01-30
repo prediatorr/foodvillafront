@@ -1,11 +1,12 @@
-import React ,{useState} from 'react'
+import React, { useState } from 'react'
+import Navbar from '../components/Navbar'
 import {Link } from 'react-router-dom'
 
 export default function Signup() { 
    const [credentials, setcredentials] = useState({name:"" , email:"", password:"", geolocation:""})
     const handleSubmit =async (e)=> {
           e.preventDefault();
-          const response =await fetch("http://localhost:5000/api/createuser", {
+          const response =await fetch("https://foodvillabackend.onrender.com/api/createuser", {
             method:'POST',
             headers:{
               'Content-Type':'application/json'
@@ -24,10 +25,19 @@ export default function Signup() {
       setcredentials({...credentials ,[event.target.name]:event.target.value})
     }
   return (
-    <>
-    <div className='container'>
+    <div style={{
+      backgroundImage:
+        'url("https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")',
+      height: "100vh",
+      backgroundSize: "cover",
+    }}>
+      <div>
+        <Navbar/>
+      </div>
+    <div className='container' >
 
-    <form onSubmit={handleSubmit}>
+    <form className="w-50 m-auto mt-5 border bg-dark border-success rounded"
+           onSubmit={handleSubmit}>
     <div className="mb-3">
     <label htmlFor="name" className="form-label">Name</label>
     <input type="text" className="form-control" name='name' value={credentials.name} onChange={onChange}/>
@@ -49,6 +59,6 @@ export default function Signup() {
   <Link to="/login" className='m-3 btn btn-danger'>Already a user</Link>
 </form>
 </div>
-    </>
+    </div>
   )
 }
