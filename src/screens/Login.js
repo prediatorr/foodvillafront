@@ -7,7 +7,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      "https://gofoodback.onrender.com/api/loginuser",
+      "https://foodvillabackend.onrender.com/api/loginuser",
       {
         method: "POST",
         headers: {
